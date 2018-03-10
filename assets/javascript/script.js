@@ -33,40 +33,51 @@ var GifTastic = {
 
             // This will only add the topic if it is not currently in the gifTopics array
             if (GifTastic.gifTopics.indexOf(GifTastic.userTopic) === -1) {
-                GifTastic.gifTopics.push(GifTastic.userTopic);     
-                GifTastic.buttonMaker();           
+                GifTastic.gifTopics.push(GifTastic.userTopic);
+                GifTastic.buttonMaker();
             }
         });
     },
 
     getGIFs: function () {
         $(document).on("click", ".topic", function () {
-            var currentTopic = $(this).attr(gif-topic-text);
+            var currentTopic = $(this).attr("gif-topic-text");
             var apiKEY = "WDFSdZEIcI6VAE8y880eQ6yC8etvDZhF"
             var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=5";
-    
+
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
+                $('.carousel').carousel('destroy');
+                $("#gif-carousel").empty();
                 console.log(response);
-                
-                // $(document).ready(function(){
-                    // $('.carousel').carousel();
+                for (i = 0; i < 5; i++) {
+                    $("#gif-carousel").append(
+                        `
+                        <a class="carousel-item" accept="image/gif">
+                            <img accept="image/gif" src="https://media.giphy.com/media/${response.data[i].id}/giphy.gif" alt="${response.data[i].title}"/>
+                        </a>
+            
+                        `
+                    );
+                }
+                $('.carousel').carousel();
 
-                    // Class to add: carousel-item
-                //   });
+
+
+                // Class to add: carousel-item
             });
         });
     },
 };
 
 
-//  Setting these two functions to begin when the document loads
+//  Setting these functions to begin when the document loads
 //  Without embedding these in the document.ready function, 
 // they will execute before the jQuery script can be loaded
 $(document).ready(function () {
     GifTastic.buttonMaker();
     GifTastic.addTopic();
-    GifTastic.getGIFs()
+    GifTastic.getGIFs();
 });
