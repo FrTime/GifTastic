@@ -1,3 +1,4 @@
+
 /* Adding a background image and adding a flex property that will allow the footer to always be pushed to the bottom of the page  */
 body {
   /* background-image: url("../images/bg.png"); */
@@ -22,4 +23,8 @@ margin-left: 5px;
 #user-submit-btn {
   margin-left: 5px;
   background: rgb(65, 65, 130);
+}
+
+.topic {
+  margin: 2px;
 }
