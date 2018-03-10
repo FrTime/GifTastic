@@ -5,8 +5,8 @@ var GifTastic = {
     gifTopics: [
         'cats',
         'dogs',
-        'cars',
-        'planes',
+        'turtles',
+        'birds',
     ],
 
     userTopic: "",
@@ -42,8 +42,11 @@ var GifTastic = {
     getGIFs: function () {
         $(document).on("click", ".topic", function () {
             var currentTopic = $(this).attr("gif-topic-text");
-            var apiKEY = "WDFSdZEIcI6VAE8y880eQ6yC8etvDZhF"
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=5";
+            // This will determine how many GIFs are generated
+            var queryLimit = 10;
+            var apiKEY = "WDFSdZEIcI6VAE8y880eQ6yC8etvDZhF";
+            // Adding the above variables to the API query URL
+            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=" + queryLimit;
 
             $.ajax({
                 url: queryURL,
@@ -52,26 +55,25 @@ var GifTastic = {
                 $('.carousel').carousel('destroy');
                 $("#gif-carousel").empty();
                 console.log(response);
-                for (i = 0; i < 5; i++) {
+                for (i = 0; i < queryLimit; i++) {
                     $("#gif-carousel").append(
                         `
-                        <a class="carousel-item" accept="image/gif">
-                            <img accept="image/gif" src="https://media.giphy.com/media/${response.data[i].id}/giphy.gif" alt="${response.data[i].title}"/>
+                        <a class="carousel-item">
+                            <p class="center">
+                                Rating: ${response.data[i].rating}
+                            </p>
+                            <br>
+                            <img src="https://media.giphy.com/media/${response.data[i].id}/giphy.gif" alt="${response.data[i].title}"/>
                         </a>
             
                         `
                     );
                 }
                 $('.carousel').carousel();
-
-
-
-                // Class to add: carousel-item
             });
         });
     },
 };
-
 
 //  Setting these functions to begin when the document loads
 //  Without embedding these in the document.ready function, 
