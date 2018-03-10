@@ -63,7 +63,7 @@ var GifTastic = {
                                 Rating: ${response.data[i].rating}
                             </p>
                             <br>
-                            <img src="https://media.giphy.com/media/${response.data[i].id}/giphy.gif" alt="${response.data[i].title}"/>
+                            <img class="'gif-${i}" src="https://media.giphy.com/media/${response.data[i].id}/giphy.gif" alt="${response.data[i].title}"/>
                         </a>
             
                         `
