@@ -9,8 +9,10 @@ var GifTastic = {
         'birds',
     ],
 
+    //  When the user clicks a button, it's attribute value will be stored here
     userTopic: "",
 
+    //  This array will store the URL for the still images of each GIF from the current chosen topic
     stillGifs: {
         0: "",
         1: "",
@@ -24,20 +26,8 @@ var GifTastic = {
         9: "",
     },
 
+    //  This array will store the URL for the animated images of each GIF from the current chosen topic
     animatedGifs: {
-        0: "",
-        1: "",
-        2: "",
-        3: "",
-        4: "",
-        5: "",
-        6: "",
-        7: "",
-        8: "",
-        9: "",
-    },
-
-    gifTitle: {
         0: "",
         1: "",
         2: "",
@@ -64,7 +54,7 @@ var GifTastic = {
         }
     },
 
-    //  This functions sets a listener function on the search button.  When a user enters a new search topic, the value 
+    //  This function sets a listener on the search button.  When a user enters a new search topic, the value is saved as a variable and pushed to the gifTopics array.
     addTopic: function () {
         $(document).on("click", "#user-submit-btn", function () {
             GifTastic.userTopic = $("#user_search").val().trim().toLowerCase();
@@ -85,6 +75,7 @@ var GifTastic = {
             var currentTopic = $(this).attr("gif-topic-text");
             //  This will determine how many GIFs are generated
             var queryLimit = 10;
+            //  This is a unique key needed to use the Giphy API
             var apiKEY = "WDFSdZEIcI6VAE8y880eQ6yC8etvDZhF";
             //  Adding the above variables to the API query URL
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=" + queryLimit;
