@@ -87,7 +87,7 @@ var GifTastic = {
             var queryLimit = 10;
             var apiKEY = "WDFSdZEIcI6VAE8y880eQ6yC8etvDZhF";
             //  Adding the above variables to the API query URL
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=" + queryLimit;
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + currentTopic + "&api_key=" + apiKEY + "&limit=" + queryLimit;
             //  The below AJAX function will request 10 GIFs of the chosen topic from the server and return them as JSON objects
             $.ajax({
                 url: queryURL,
